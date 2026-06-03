@@ -38,6 +38,10 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# build artifacts (APK/AAB downloaded locally for testing)
+*.apk
+*.aab
+
 app-example
 
 # generated native folders

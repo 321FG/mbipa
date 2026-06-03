@@ -211,8 +211,10 @@ export async function setLastSeenWhatsNew(version: string): Promise<void> {
 }
 
 /**
- * Whether to show the "What's new" screen: only when the user is already on
- * the latest version (i.e. just updated) and hasn't acknowledged it yet.
+ * Whether to show the "What's new" screen: only after a genuine update
+ * (the user has a previously-seen version on record that differs from the
+ * current one). Returns false on a fresh install — there is nothing "new"
+ * to a first-time user.
  */
 export function shouldShowWhatsNew(
   current: string,
@@ -220,6 +222,7 @@ export function shouldShowWhatsNew(
   lastSeen: string | null,
 ): boolean {
   if (!info) return false;
+  if (lastSeen === null) return false; // fresh install — never show
   const onLatest = compareVersions(current, info.latestVersion) >= 0;
   return onLatest && lastSeen !== current;
 }

@@ -717,6 +717,7 @@
     },
     "tryThis": "Voici ce que vous pouvez faire :",
     "retry": "Réessayer",
+    "backHome": "Retour à l'accueil",
     "persistsProblem": "Si le problème persiste, contactez"
   }
 }

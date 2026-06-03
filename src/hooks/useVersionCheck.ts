@@ -82,6 +82,10 @@ export function useVersionCheck(): VersionCheckState {
       } else if (shouldShowWhatsNew(currentVersion, remote, lastSeen)) {
         // Up to date but the release notes for this version are unseen.
         setShowWhatsNew(true);
+      } else if (lastSeen === null) {
+        // Fresh install: record the current version so the "What's new"
+        // screen only appears after a genuine future update.
+        void setLastSeenWhatsNew(currentVersion);
       }
       setLoading(false);
     })();
