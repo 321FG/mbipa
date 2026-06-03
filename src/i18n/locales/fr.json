@@ -1,0 +1,722 @@
+{
+  "onboarding": {
+    "slide1": {
+      "title": "Tu n'es pas seul",
+      "quote": "Mbipa est là pour t'écouter, à chaque instant."
+    },
+    "slide2": {
+      "title": "Exprime-toi librement",
+      "quote": "Un espace bienveillant, où tu es en sécurité."
+    }
+  },
+  "common": {
+    "loading": "Chargement...",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "close": "Fermer",
+    "back": "Retour",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "yes": "Oui",
+    "no": "Non",
+    "ok": "OK",
+    "error": "Erreur",
+    "success": "Succès",
+    "retry": "Réessayer",
+    "search": "Rechercher",
+    "all": "Tous",
+    "soon": "Bientôt",
+    "or": "ou",
+    "send": "Envoyer",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "skip": "Passer",
+    "start": "Commencer",
+    "continue": "Continuer",
+    "finish": "Terminer",
+    "done": "OK",
+    "errorTitle": "Une erreur est survenue",
+    "permissionRequired": "Permission requise",
+    "fieldRequired": "Champ requis"
+  },
+  "forms": {
+    "networkError": "Problème de réseau. Vérifiez votre connexion et réessayez.",
+    "serverError": "Une erreur est survenue de notre côté. Réessayez dans un instant.",
+    "rateLimited": {
+      "title": "Trop de requêtes",
+      "message": "Vous avez envoyé plusieurs requêtes d'affilée. Réessayez dans environ une minute."
+    },
+    "validation": {
+      "title": "Veuillez vérifier votre saisie",
+      "generic": "Certaines informations sont manquantes ou invalides.",
+      "name": "Veuillez saisir votre nom (au moins 2 caractères).",
+      "email": "Veuillez saisir une adresse e-mail valide.",
+      "reason": "Veuillez sélectionner un motif.",
+      "format": "Veuillez sélectionner un format de séance.",
+      "period": "Veuillez sélectionner une période valide.",
+      "date": "Veuillez choisir une date valide.",
+      "dateFuture": "Veuillez choisir une date dans le futur.",
+      "notes": "Les notes doivent contenir au maximum 2000 caractères.",
+      "subject": "Veuillez saisir un objet.",
+      "messageShort": "Votre message est trop court.",
+      "messageLong": "Votre message est trop long."
+    }
+  },
+  "update": {
+    "optionalTitle": "Nouvelle version disponible",
+    "optionalMessage": "Une nouvelle version de MBIPA est disponible avec des améliorations et des corrections.",
+    "forcedTitle": "Mise à jour requise",
+    "forcedMessage": "Une mise à jour est requise pour continuer à utiliser MBIPA.",
+    "whatsNewHeading": "Nouveautés",
+    "updateNow": "Mettre à jour",
+    "later": "Plus tard",
+    "versionLabel": "Version {{version}}",
+    "whatsNewTitle": "Bienvenue dans MBIPA {{version}}",
+    "whatsNewSubtitle": "Voici les nouveautés de cette version :"
+  },
+  "tabs": {
+    "home": "Accueil",
+    "chat": "Chat",
+    "assessments": "Tests",
+    "music": "Musique",
+    "profile": "Profil"
+  },
+  "home": {
+    "greeting": "Bonjour",
+    "greetingMorning": "Bonjour",
+    "greetingAfternoon": "Bon après-midi",
+    "greetingEvening": "Bonsoir",
+    "howAreYouToday": "Comment allez-vous aujourd'hui ?",
+    "wellbeingScore": "Score de bien-être",
+    "tipOfDay": "Conseil du jour",
+    "tipText": "Prenez 5 minutes pour respirer profondément. La respiration consciente aide à réduire le stress et l'anxiété.",
+    "nextSession": "Prochaine session",
+    "noSession": "Aucune session programmée",
+    "bookWithPsychologist": "Réserver avec un psychologue",
+    "goPremium": "Passez à Premium",
+    "premiumSubtitle": "Messages illimités, tous les tests et plus encore",
+    "view": "Voir",
+    "yourStats": "Vos statistiques",
+    "basedOnTests": "Basé sur vos derniers tests",
+    "lastTest": "Dernier test : {{name}}",
+    "passTestForScore": "Passez un test pour voir votre score",
+    "quickAccess": "Accès rapide",
+    "quickActions": {
+      "chat": "Discuter",
+      "tests": "Tests",
+      "music": "Musique",
+      "session": "Session"
+    },
+    "stats": {
+      "sessions": "Sessions",
+      "messages": "Messages",
+      "streak": "Série"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "editProfile": "Modifier le profil",
+    "preferences": "Préférences",
+    "notifications": "Notifications",
+    "darkMode": "Mode sombre",
+    "restartToApply": "L'application doit redémarrer pour appliquer le nouveau thème. Redémarrer maintenant ?",
+    "language": "Langue",
+    "subscription": "Abonnement",
+    "currentPlan": "Plan actuel",
+    "freePlan": "Gratuit",
+    "premiumPlan": "Premium",
+    "upgrade": "Passer à Premium",
+    "support": "Support",
+    "helpCenter": "Centre d'aide",
+    "contactUs": "Nous contacter",
+    "about": "À propos",
+    "version": "Version 1.0.0",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "logout": "Déconnexion",
+    "logoutConfirm": "Voulez-vous vraiment vous déconnecter ?",
+    "deleteAccount": "Supprimer mon compte",
+    "dangerZone": "Zone de danger",
+    "changePassword": "Changer le mot de passe",
+    "selectLanguage": "Choisir la langue",
+    "french": "Français",
+    "english": "English",
+    "account": "Compte",
+    "testsTaken": "Tests passés",
+    "sessions": "Sessions",
+    "choosePlan": "Choisir un plan",
+    "recommended": "Recommandé",
+    "free": "Gratuit",
+    "perMonth": "/mois",
+    "choose": "Choisir",
+    "currentPlanLabel": "Plan actuel",
+    "streakDays": "Jours d'affilée",
+    "logoutQuestion": "Êtes-vous sûr de vouloir vous déconnecter ?",
+    "deleteAccountTitle": "Supprimer le compte",
+    "deleteAccountConfirm": "Cette action est irréversible. Toutes vos données seront supprimées.",
+    "reauthRequired": "Réauthentification requise",
+    "reauthMessage": "Veuillez entrer votre mot de passe pour confirmer la suppression du compte.",
+    "passwordRequired": "Le mot de passe est requis",
+    "deleteAccountError": "Impossible de supprimer le compte",
+    "changePasswordTitle": "Changer le mot de passe",
+    "changePasswordPrompt": "Un email de réinitialisation va être envoyé à {{email}}.",
+    "emailSent": "Email envoyé",
+    "checkInbox": "Vérifiez votre boîte de réception.",
+    "emailUnavailable": "Email indisponible",
+    "sendError": "Envoi impossible",
+    "verifyEmailTitle": "Vérifie ton email",
+    "verifyEmailCta": "Appuie pour renvoyer le lien de vérification",
+    "linkError": "Impossible d'ouvrir le lien",
+    "paymentTitle": "Paiement",
+    "paymentRedirect": "Vous allez être redirigé vers le paiement pour {{name}} à {{price}}€/mois",
+    "testimonial": "Partager un avis",
+    "testimonialTitle": "Partagez votre expérience",
+    "testimonialDescription": "Aidez-nous à améliorer Mbipa en partageant vos commentaires ou votre témoignage.",
+    "testimonialName": "Votre nom",
+    "testimonialEmail": "Votre email",
+    "testimonialMessage": "Votre message",
+    "testimonialPlaceholder": "Parlez-nous de votre expérience avec Mbipa...",
+    "testimonialSubmit": "Envoyer le témoignage",
+    "testimonialSuccess": "Merci pour votre avis !",
+    "testimonialError": "Impossible d'envoyer le témoignage. Veuillez réessayer."
+  },
+  "edit": {
+    "title": "Modifier le profil",
+    "photo": "Photo de profil",
+    "changePhoto": "Changer la photo",
+    "removePhoto": "Supprimer la photo",
+    "removePhotoConfirm": "Supprimer la photo de profil ?",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Email",
+    "bio": "Bio",
+    "bioPlaceholder": "Parlez un peu de vous...",
+    "saved": "Profil mis à jour",
+    "saveError": "Impossible de sauvegarder",
+    "permissionPhotos": "Autorisez l'accès aux photos pour changer votre avatar.",
+    "photoError": "Échec de la sélection de la photo",
+    "firstNameRequired": "Le prénom ne peut pas être vide",
+    "tapToChange": "Touchez pour changer",
+    "tapToAdd": "Touchez pour ajouter une photo",
+    "firstNamePlaceholder": "Votre prénom",
+    "lastNamePlaceholder": "Votre nom",
+    "locationPlaceholder": "Ville, pays",
+    "voice": "Voix de Mbipa",
+    "voiceFemale": "Féminine",
+    "voiceMale": "Masculine"
+  },
+  "therapist": {
+    "title": "Trouver un psychologue",
+    "subtitle": "Remplis ce formulaire et nous te contacterons pour planifier une séance.",
+    "fields": {
+      "identity": "Tes coordonnées",
+      "fullName": "Nom complet *",
+      "email": "Email *",
+      "phoneOptional": "Téléphone (facultatif)",
+      "reason": "Motif de consultation *",
+      "format": "Format souhaité",
+      "date": "Date souhaitée",
+      "notes": "Notes (facultatif)",
+      "notesPlaceholder": "Décris brièvement ce que tu traverses…"
+    },
+    "sendRequest": "Envoyer la demande",
+    "requestSentTitle": "Demande envoyée",
+    "requestSentText": "Un membre de l'équipe Mbipa te contactera par email sous 24 à 48h pour confirmer ton rendez-vous.",
+    "back": "Retour",
+    "newRequest": "Faire une autre demande",
+    "emailInfo": "Le bouton ouvre ton application mail vers {{email}}.",
+    "confidentialInfo": "Tes informations sont confidentielles et utilisées uniquement pour fixer ton rendez-vous.",
+    "emailAppUnavailableTitle": "Pas d'application mail",
+    "emailAppUnavailableMessage": "Envoie ta demande à {{email}}.",
+    "emailErrorTitle": "Erreur",
+    "emailErrorMessage": "Impossible d'ouvrir l'application mail. Contacte {{email}}.",
+    "emailSubject": "Demande de rendez-vous — {{name}}",
+    "emailGreeting": "Bonjour,",
+    "emailIntro": "Je souhaite prendre rendez-vous avec un psychologue.",
+    "emailLabel": {
+      "name": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "reason": "Motif",
+      "format": "Format",
+      "date": "Date souhaitée",
+      "period": "Plage horaire",
+      "notes": "Notes"
+    },
+    "emailClosing": "Merci.",
+    "reasons": {
+      "anxiety": "Anxiété / stress",
+      "depression": "Dépression / humeur",
+      "burnout": "Burn-out / travail",
+      "couple": "Couple / famille",
+      "self": "Développement personnel",
+      "other": "Autre"
+    },
+    "formats": {
+      "video": "Vidéo",
+      "phone": "Téléphone",
+      "inperson": "En présentiel"
+    },
+    "periods": {
+      "morning": "Matin (8h–12h)",
+      "afternoon": "Après-midi (12h–17h)",
+      "evening": "Soir (17h–20h)"
+    },
+    "filters": {
+      "all": "Tous",
+      "anxiety": "Anxiété",
+      "depression": "Dépression",
+      "stress": "Stress",
+      "couple": "Couple",
+      "trauma": "Trauma"
+    },
+    "book": "Réserver",
+    "unavailable": "Indisponible",
+    "fee": "Tarif",
+    "perHour": " / séance",
+    "bookSession": "Réserver une session",
+    "format": "Format",
+    "video": "Vidéo",
+    "audio": "Audio",
+    "chat": "Chat",
+    "selectSlot": "Choisir un créneau",
+    "selectDate": "Date du rendez-vous",
+    "selectTime": "Heure du rendez-vous",
+    "changeDate": "Changer la date",
+    "changeTime": "Changer l'heure",
+    "reasonLabel": "Décrivez brièvement ce qui vous amène",
+    "reasonPlaceholder": "Ex : je traverse une période difficile, je me sens anxieux(se), j'aimerais parler de... (facultatif)",
+    "reasonRequired": "Merci de décrire brièvement le motif (au moins 10 caractères).",
+    "demoBadge": "(Démo)",
+    "demoNote": "Profils de démonstration. Les vrais psychologues seront ajoutés prochainement.",
+    "demoUnavailable": "Bientôt disponible",
+    "demoBookingBlocked": "Réservation indisponible",
+    "demoBookingBlockedMessage": "Ce psychologue est un profil de démonstration. Les vrais professionnels seront disponibles très bientôt.",
+    "durationMin": "{{min}} min",
+    "languages": "Langues",
+    "dateInPast": "Veuillez choisir une date future.",
+    "slots": {
+      "todayEvening": "Aujourd'hui 18h",
+      "tomorrowMorning": "Demain 10h",
+      "tomorrowAfternoon": "Demain 15h",
+      "in3days": "Dans 3 jours"
+    },
+    "today": "Aujourd'hui",
+    "tomorrow": "Demain",
+    "total": "Total",
+    "confirmBooking": "Confirmer la réservation",
+    "bookingSuccess": "Réservation confirmée !",
+    "bookingSuccessMessage": "Votre session est programmée. Un email de confirmation vous a été envoyé.",
+    "bookingError": "Réservation impossible",
+    "loading": "Chargement des psychologues...",
+    "empty": "Aucun psychologue trouvé"
+  },
+  "verifyEmail": {
+    "title": "Vérifie ton email",
+    "subtitle": "On vient d'envoyer un lien à",
+    "spamTip": "Pas reçu ? Vérifie tes spams ou courriers indésirables. L'expéditeur est noreply@mbipa.app.",
+    "checkCta": "J'ai vérifié, continuer",
+    "resendCta": "Renvoyer le lien",
+    "switchAccount": "Utiliser un autre compte",
+    "notYetTitle": "Pas encore vérifié",
+    "notYetMessage": "On n'a pas encore reçu la confirmation. Clique sur le lien dans ton email puis réessaie."
+  },
+  "auth": {
+    "appName": "Mbipa",
+    "tagline": "La paix de l'esprit",
+    "login": "Connexion",
+    "loginSubtitle": "Heureux de te revoir. Respire, on est là.",
+    "signIn": "Se connecter",
+    "register": "Inscription",
+    "registerSubtitle": "Rejoins Mbipa et prends soin de toi.",
+    "createAccount": "Créer un compte",
+    "email": "Email",
+    "emailPlaceholder": "ex: bagaza.jean@email.com",
+    "password": "Mot de passe",
+    "passwordMin": "Min. 6 caractères",
+    "confirmPassword": "Confirmer le mot de passe",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "forgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Pas de compte ?",
+    "hasAccount": "Déjà un compte ?",
+    "signUp": "S'inscrire",
+    "signInLink": "Se connecter",
+    "creating": "Création...",
+    "welcomeNew": "Bienvenue parmi nous",
+    "step": "Étape {{current}} sur {{total}}",
+    "credentials": "Identifiants",
+    "profile": "Profil",
+    "age": "Âge",
+    "location": "Localité",
+    "gender": "Genre",
+    "genderMale": "Homme",
+    "genderFemale": "Femme",
+    "genderOther": "Autre",
+    "firstNamePlaceholder": "ex: Jean-Pierre",
+    "lastNamePlaceholder": "ex: Bagaza",
+    "locationPlaceholder": "ex: Bangui",
+    "goalTitle": "Qu'est-ce qui t'amène ?",
+    "goalSubtitle": "Choisis ce qui te parle le plus (optionnel)",
+    "goals": {
+      "stress": "Gérer mon stress",
+      "sleep": "Mieux dormir",
+      "anxiety": "Apaiser mon anxiété",
+      "burnout": "Éviter le burnout",
+      "focus": "Retrouver ma concentration",
+      "wellbeing": "Prendre soin de moi"
+    },
+    "errors": {
+      "acceptTerms": "Vous devez accepter les Conditions d'utilisation et la Politique de confidentialité pour continuer."
+    },
+    "termsAcceptance": "J'accepte les {{terms}} et la {{privacy}}",
+    "errors": {
+      "invalidEmail": "Email invalide",
+      "passwordTooShort": "Mot de passe : min 6 caractères",
+      "passwordsMismatch": "Les mots de passe ne correspondent pas",
+      "nameRequired": "Le prénom est requis"
+    },
+    "forgot": {
+      "title": "Mot de passe oublié",
+      "subtitle": "Entre ton email, on t'envoie un lien de réinitialisation.",
+      "send": "Envoyer le lien",
+      "sent": "Email envoyé. Vérifie ta boîte de réception.",
+      "back": "Retour à la connexion"
+    }
+  },
+  "assessment": {
+    "resultTitle": "Résultat",
+    "score": "Score",
+    "interpretation": "Interprétation",
+    "interp": {
+      "good": "≥70% : Bon bien-être",
+      "moderate": "40-69% : Bien-être modéré",
+      "consult": "<40% : Consultation recommandée"
+    },
+    "talkAboutIt": "En parler avec Mbipa",
+    "questionOf": "Question {{current}}/{{total}}",
+    "lastTwoWeeks": "Ces deux dernières semaines...",
+    "result": {
+      "excellent": "Excellent ! Votre bien-être est bon.",
+      "good": "Correct. Quelques points à améliorer.",
+      "warning": "Attention. Pensez à prendre soin de vous.",
+      "consult": "Nous vous recommandons de consulter un professionnel."
+    }
+  },
+  "assessments": {
+    "title": "Tests de bien-être",
+    "subtitle": "Évaluez votre santé mentale avec nos tests validés scientifiquement",
+    "available": "Tests disponibles",
+    "completed": "Tests complétés",
+    "start": "Commencer",
+    "redo": "Refaire le test",
+    "unlock": "Débloquer",
+    "minutes": "{{min}} min",
+    "questions": "{{count}} questions",
+    "lastResult": "Dernier score",
+    "score": "Score",
+    "noResults": "Aucun résultat pour le moment",
+    "premium": "Premium",
+    "free": "Gratuit",
+    "tabs": "Tests",
+    "history": "Historique",
+    "yourWellbeing": "Votre bien-être",
+    "viewDetails": "Voir détails",
+    "testsTaken": "Tests passés",
+    "averageScore": "Score moyen",
+    "unlockAll": "Débloquez tous les tests",
+    "premiumPitch": "Accédez à WEMWBS, MBI et bien plus avec Premium",
+    "upgrade": "Upgrade",
+    "emptyHistory": "Aucun historique",
+    "emptyHistoryText": "Passez votre premier test pour voir vos résultats ici",
+    "recentResults": "Résultats récents",
+    "questionsCount_one": "{{count}} question",
+    "questionsCount_other": "{{count}} questions",
+    "questionsCount": "{{count}} questions",
+    "finish": "Terminer"
+  },
+  "chat": {
+    "title": "Chat",
+    "a11y": {
+      "muteVoice": "Couper la voix de Mbipa",
+      "unmuteVoice": "Réactiver la voix de Mbipa",
+      "switchCompanion": "Changer de compagnon"
+    },
+    "placeholder": "Écrivez votre message...",
+    "send": "Envoyer",
+    "thinking": "Mbipa réfléchit...",
+    "typing": "écrit…",
+    "loadingMessages": "Chargement des messages...",
+    "newConversation": "Nouvelle conversation",
+    "history": "Historique",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "emptyTitle": "Bonjour",
+    "emptySubtitle": "Je suis Mbipa, votre compagnon de bien-être. Comment puis-je vous aider aujourd'hui ?",
+    "suggestions": "Suggestions :",
+    "suggestion1": "Comment gérer le stress ?",
+    "suggestion2": "Je me sens anxieux",
+    "suggestion3": "Parle-moi de toi",
+    "voiceUnavailable": "Voix indisponible",
+    "voiceUnavailableMsg": "Impossible de lire le message.",
+    "micPermission": "Permission micro",
+    "micPermissionMsg": "L'application a besoin du micro pour la dictée vocale.",
+    "audio": "Audio",
+    "noSpeech": "Aucune parole détectée. Réessayez.",
+    "voiceError": "Échec de la dictée vocale",
+    "vision": {
+      "button": "Petit check-in",
+      "capturing": "Un instant…",
+      "permissionTitle": "Autorisation caméra",
+      "permissionMsg": "Mbipa aimerait jeter un œil pour un check-in tout doux. Tu peux refuser à tout moment.",
+      "unavailable": "Caméra indisponible",
+      "unavailableMsg": "Impossible d'ouvrir la caméra. Réessaie plus tard."
+    },
+    "status": {
+      "online": "en ligne",
+      "speaking": "parle…"
+    }
+  },
+  "music": {
+    "title": "Musicothérapie",
+    "subtitle": "Sons et musiques pour votre bien-être",
+    "searchPlaceholder": "Rechercher une piste, un artiste...",
+    "categories": "Catégories",
+    "yourFavorites": "Vos favoris",
+    "allTracks": "Toutes les pistes",
+    "empty": "Aucune piste trouvée",
+    "playError": "Lecture impossible",
+    "playErrorMsg": "Impossible d'ouvrir le lien YouTube.",
+    "embedBlockedMsg": "Cette vidéo n'autorise pas la lecture intégrée. Tu peux l'ouvrir directement sur YouTube.",
+    "play": "Lire",
+    "pause": "Pause",
+    "openInYoutube": "Ouvrir dans YouTube",
+    "playerLoading": "Chargement...",
+    "closePlayer": "Fermer",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "loadError": "Impossible de charger la piste"
+  },
+  "legal": {
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "about": "À propos",
+    "help": "Centre d'aide",
+    "contact": "Nous contacter",
+    "contactTitle": "On vous écoute",
+    "contactSubtitle": "Une question, un bug, une suggestion ? Notre équipe répond sous 48 heures.",
+    "contactSubject": "Sujet",
+    "contactMessage": "Votre message",
+    "contactHint": "Votre message sera envoyé directement à notre équipe.",
+    "contactSendError": "Impossible d'envoyer le message. Veuillez réessayer.",
+    "contactSuccess": "Message envoyé ! Nous vous répondrons dans les 48 heures.",
+    "aboutVersion": "Version {{version}}",
+    "aboutTagline": "Avec vous, à chaque pas.",
+    "termsContent": {
+      "meta": "En vigueur depuis le 29 avril 2026",
+      "intro": "En utilisant Mbipa, vous acceptez les conditions ci-dessous. Lisez-les attentivement.",
+      "sections": [
+        {
+          "heading": "1. Acceptation",
+          "body": "L'utilisation de Mbipa implique l'acceptation pleine et entière des présentes conditions. Si vous n'êtes pas d'accord, n'utilisez pas l'application."
+        },
+        {
+          "heading": "2. Compte utilisateur",
+          "body": "Vous devez fournir des informations exactes lors de l'inscription. Vous êtes responsable de la confidentialité de votre mot de passe et de toute activité réalisée depuis votre compte."
+        },
+        {
+          "heading": "3. Usage acceptable",
+          "body": "Vous acceptez de ne pas : utiliser Mbipa pour des activités illégales ; tenter de pirater le service ; partager du contenu offensant, haineux ou portant atteinte à autrui ; usurper l'identité d'un tiers."
+        },
+        {
+          "heading": "4. Nature du service",
+          "body": "Mbipa est un compagnon de bien-être basé sur l'IA. Il ne remplace pas un médecin, un psychologue ni aucun professionnel de santé. En cas d'urgence, contactez immédiatement un service d'urgence local."
+        },
+        {
+          "heading": "5. Abonnement et paiement",
+          "body": "Certaines fonctionnalités sont incluses dans des plans payants (Premium, Pro). Les paiements sont gérés via Stripe. Vous pouvez annuler à tout moment depuis votre profil."
+        },
+        {
+          "heading": "6. Propriété intellectuelle",
+          "body": "Le contenu généré par Mbipa, l'interface, les voix et les visuels sont protégés. Vous conservez la propriété de vos messages, mais accordez à Mbipa une licence limitée pour les traiter et améliorer le service."
+        },
+        {
+          "heading": "7. Limitation de responsabilité",
+          "body": "Mbipa est fourni « tel quel ». Nous ne garantissons pas l'absence d'interruption, d'erreur ou de perte de données. Notre responsabilité est limitée au maximum permis par la loi."
+        },
+        {
+          "heading": "8. Résiliation",
+          "body": "Nous pouvons suspendre ou supprimer votre compte en cas de non-respect de ces conditions. Vous pouvez supprimer votre compte à tout moment depuis Profil → Zone de danger."
+        },
+        {
+          "heading": "9. Droit applicable",
+          "body": "Les présentes conditions sont régies par le droit applicable de votre pays de résidence. Tout litige sera traité par les tribunaux compétents."
+        },
+        {
+          "heading": "10. Contact",
+          "body": "Pour toute question : legal@mbipa.app"
+        }
+      ]
+    },
+    "privacyContent": {
+      "meta": "Dernière mise à jour : 29 avril 2026",
+      "intro": "Votre vie privée est essentielle. Cette page explique en français clair ce que Mbipa collecte, pourquoi, et les contrôles dont vous disposez.",
+      "sections": [
+        {
+          "heading": "Données que nous collectons",
+          "body": "Compte : adresse e-mail, prénom, nom, âge, sexe, localité.\nContenu : messages que vous envoyez à votre compagnon (Bagaza ou Yassingou), réponses aux tests de bien-être, choix d'écoute musicale.\nTechnique : type d'appareil, version de l'application, journaux d'erreurs anonymisés."
+        },
+        {
+          "heading": "Pourquoi nous utilisons ces données",
+          "body": "• Vous fournir le service de coaching de bien-être (réponses personnalisées).\n• Mesurer votre progression sur les tests psychologiques.\n• Sécuriser votre compte et prévenir les abus.\n• Améliorer la qualité de l'application via des statistiques agrégées et anonymes."
+        },
+        {
+          "heading": "Partage avec des tiers",
+          "body": "Mbipa s'appuie sur Microsoft Azure (génération de réponses + voix) et Firebase (authentification). Aucune donnée n'est revendue à des annonceurs. Les transcriptions de votre voix sont traitées en mémoire pour la transcription et ne sont pas stockées."
+        },
+        {
+          "heading": "Conservation",
+          "body": "Les conversations sont conservées tant que vous gardez votre compte. Vous pouvez à tout moment supprimer votre compte depuis Profil → Zone de danger. La suppression est définitive et entraîne l'effacement de vos données sous 30 jours."
+        },
+        {
+          "heading": "Vos droits (RGPD)",
+          "body": "Vous pouvez accéder à vos données, les corriger, les exporter ou les supprimer. Pour toute demande, écrivez à privacy@mbipa.app. Nous répondons sous 30 jours."
+        },
+        {
+          "heading": "Sécurité",
+          "body": "Vos données sont chiffrées en transit (HTTPS/TLS 1.2+) et au repos. L'accès interne est restreint et journalisé. Nous ne lisons jamais vos conversations à titre individuel."
+        },
+        {
+          "heading": "Avertissement clinique",
+          "body": "Mbipa est un compagnon de bien-être, pas un substitut à un professionnel de santé mentale. En cas de détresse, contactez un service d'urgence local ou un professionnel de santé."
+        }
+      ]
+    },
+    "aboutContent": {
+      "intro": "Mbipa est un compagnon de bien-être conçu pour vous accompagner au quotidien, avec bienveillance et sans jugement.",
+      "sections": [
+        {
+          "heading": "Notre mission",
+          "body": "Rendre le soutien psychologique accessible à tous, dans votre langue, à votre rythme. Mbipa propose deux compagnons à voix réelle — Bagaza et Yassingou — pour vous accompagner dans la gestion du stress, de l'anxiété et du sommeil."
+        },
+        {
+          "heading": "Comment ça marche",
+          "body": "1. Discutez librement avec votre compagnon, à l'écrit ou à la voix.\n2. Réalisez des tests validés (PHQ-9, GAD-7…) pour suivre votre bien-être.\n3. Écoutez de la musique adaptée à votre humeur.\n4. Réservez une session avec un thérapeute si vous le souhaitez."
+        },
+        {
+          "heading": "Technologies",
+          "body": "Mbipa s'appuie sur Microsoft Azure OpenAI pour les conversations, Azure Speech pour les voix neurales, et Firebase pour l'authentification. Tout est conçu pour respecter votre vie privée."
+        },
+        {
+          "heading": "Avertissement",
+          "body": "Mbipa ne remplace pas un professionnel de santé mentale. En cas de détresse, contactez un service d'urgence ou un thérapeute qualifié."
+        }
+      ],
+      "tagline": "Avec vous, à chaque pas.",
+      "website": "Site web",
+      "copyright": "© {{year}} Mbipa. Tous droits réservés.",
+      "credit": "Fondé par Sehass Digital et Complexe Tinam."
+    },
+    "helpContent": {
+      "intro": "Trouvez rapidement une réponse à votre question. Si vous ne trouvez pas, contactez notre équipe.",
+      "contactCta": "Nous contacter",
+      "faqs": [
+        {
+          "q": "Mbipa peut-il remplacer un thérapeute ?",
+          "a": "Non. Mbipa est un compagnon de bien-être au quotidien. Pour un suivi clinique, consultez un professionnel de santé mentale. Vous pouvez réserver une session avec un thérapeute partenaire depuis l'onglet Profil."
+        },
+        {
+          "q": "Mes conversations sont-elles privées ?",
+          "a": "Oui. Vos messages sont chiffrés en transit et au repos. Personne chez Mbipa ne lit vos conversations à titre individuel. Pour plus de détails, consultez la Politique de confidentialité."
+        },
+        {
+          "q": "Comment changer la voix de mon compagnon ?",
+          "a": "Dans l'onglet Chat, appuyez sur l'icône « changer d'ami » en haut à droite du portrait pour basculer entre Bagaza (voix masculine) et Yassingou (voix féminine)."
+        },
+        {
+          "q": "L'enregistrement vocal ne marche pas",
+          "a": "Vérifiez que vous avez accordé la permission micro à Mbipa dans les réglages de votre téléphone. Sur Android : Paramètres → Applications → Mbipa → Autorisations."
+        },
+        {
+          "q": "Comment annuler mon abonnement ?",
+          "a": "Depuis l'onglet Profil → Compte → Abonnement, vous pouvez voir votre plan en cours et le résilier. L'accès Premium reste actif jusqu'à la fin de la période en cours."
+        },
+        {
+          "q": "Puis-je supprimer mes données ?",
+          "a": "Oui. Profil → Zone de danger → Supprimer mon compte. La suppression est définitive et toutes vos données sont effacées sous 30 jours."
+        },
+        {
+          "q": "Mbipa est-il disponible hors connexion ?",
+          "a": "Les conversations et les voix nécessitent Internet. Vos tests passés et vos préférences sont disponibles hors-ligne en lecture seule."
+        }
+      ]
+    }
+  },
+  "subscription": {
+    "title": "Abonnement",
+    "intro": "Choisissez la formule qui vous correspond. Paiement sécurisé via Flutterwave.",
+    "month": "mois",
+    "bestValue": "MEILLEURE OFFRE",
+    "subscribe": "S'abonner",
+    "processing": "Traitement…",
+    "openingCheckout": "Ouverture du paiement sécurisé…",
+    "footnote": "Paiement sécurisé Flutterwave. Vous pouvez annuler à tout moment.",
+    "errorTitle": "Paiement impossible",
+    "errorGeneric": "Une erreur est survenue, veuillez réessayer.",
+    "emailMissing": "Aucun e-mail associé à votre compte. Mettez à jour votre profil.",
+    "plan": {
+      "premium": { "name": "Premium" },
+      "pro": { "name": "Pro" }
+    },
+    "feat": {
+      "unlimitedChat": "Chat illimité avec l'IA",
+      "allTests": "Tous les tests psychologiques",
+      "musicLibrary": "Bibliothèque musicale complète",
+      "history": "Historique illimité",
+      "oneSession": "1 séance avec un thérapeute / mois",
+      "allPremium": "Toutes les fonctionnalités Premium",
+      "unlimitedSessions": "Séances illimitées avec thérapeutes",
+      "priority": "Support prioritaire",
+      "reports": "Rapports détaillés et suivi",
+      "dedicated": "Thérapeute dédié"
+    },
+    "result": {
+      "verifyingTitle": "Vérification du paiement…",
+      "successTitle": "Paiement réussi",
+      "successMessage": "Votre abonnement est actif. Bienvenue !",
+      "failedTitle": "Paiement échoué",
+      "failedMessage": "Le paiement n'a pas pu être confirmé. Aucun montant n'a été débité si l'opération a été annulée.",
+      "pendingTitle": "Paiement en attente",
+      "pendingMessage": "Nous attendons la confirmation de votre banque. Vous recevrez une notification.",
+      "noTxRef": "Référence de transaction introuvable.",
+      "backHome": "Retour à l'accueil",
+      "retry": "Réessayer"
+    }
+  },
+  "error": {
+    "noInternet": {
+      "title": "Pas de connexion internet",
+      "description": "Vérifiez votre connexion WiFi ou vos données mobiles.",
+      "suggestion1": "Activez le WiFi ou les données mobiles",
+      "suggestion2": "Vérifiez que le signal est bon",
+      "suggestion3": "Redémarrez votre appareil si nécessaire"
+    },
+    "notFound": {
+      "title": "Page non trouvée",
+      "description": "La ressource que vous cherchez n'existe pas ou a été supprimée."
+    },
+    "server": {
+      "title": "Erreur serveur",
+      "description": "Une erreur est survenue du côté du serveur. Réessayez dans quelques instants."
+    },
+    "general": {
+      "suggestion1": "Vérifiez votre connexion internet",
+      "suggestion2": "Essayez à nouveau",
+      "suggestion3": "Contactez le support si le problème persiste"
+    },
+    "tryThis": "Voici ce que vous pouvez faire :",
+    "retry": "Réessayer",
+    "persistsProblem": "Si le problème persiste, contactez"
+  }
+}

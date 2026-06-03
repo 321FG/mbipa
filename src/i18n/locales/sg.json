@@ -1,0 +1,43 @@
+{
+  "subscription": {
+    "title": "Mbabe ti tene",
+    "intro": "Soro mbabe so ague na mo. Lutoro ti nginza na lege ti Flutterwave.",
+    "month": "nze",
+    "bestValue": "MBABE TI NZONI",
+    "subscribe": "Mu mbabe",
+    "processing": "A yeke sara…",
+    "openingCheckout": "A yeke zia lege ti lutoro…",
+    "footnote": "Lutoro ti nginza na Flutterwave. Mo lingbi ti zia na ngoi kue.",
+    "errorTitle": "Lutoro asi pepe",
+    "errorGeneric": "Mbeni ye asi, tara mbeni ngu.",
+    "emailMissing": "Mo zia e-mail na mbeti ti mo pepe. Leke mbeti ti mo.",
+    "plan": {
+      "premium": { "name": "Premium" },
+      "pro": { "name": "Pro" }
+    },
+    "feat": {
+      "unlimitedChat": "Lisoro na IA na ndangba kue",
+      "allTests": "A-tara kue ti psychologie",
+      "musicLibrary": "Bibliothèque ti mozoko kue",
+      "history": "Tondo na ndangba kue",
+      "oneSession": "1 ngoi na thérapeute / nze",
+      "allPremium": "Aye kue ti Premium",
+      "unlimitedSessions": "Angoi na thérapeute na ndangba kue",
+      "priority": "Mungo maboko ti kozo",
+      "reports": "A-rapport so ague na ngoi",
+      "dedicated": "Thérapeute ti mo gi"
+    },
+    "result": {
+      "verifyingTitle": "A yeke bata lutoro…",
+      "successTitle": "Lutoro asi nzoni",
+      "successMessage": "Mbabe ti mo ague awe. Bara mo so!",
+      "failedTitle": "Lutoro asi pepe",
+      "failedMessage": "A bata lutoro pepe. Tongana mo zia, a fa nginza pepe.",
+      "pendingTitle": "Lutoro angbâ",
+      "pendingMessage": "E yeke ku tene ti banque ti mo. Mo yeke wara ngbanga.",
+      "noTxRef": "Référence ti lutoro ayeke pepe.",
+      "backHome": "Kiri na ndo",
+      "retry": "Tara mbeni ngu"
+    }
+  }
+}
