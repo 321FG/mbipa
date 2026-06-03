@@ -227,6 +227,7 @@
     "newRequest": "Faire une autre demande",
     "emailInfo": "Le bouton ouvre ton application mail vers {{email}}.",
     "confidentialInfo": "Tes informations sont confidentielles et utilisées uniquement pour fixer ton rendez-vous.",
+    "priceNote": "Le tarif de la séance te sera communiqué lors de la confirmation de ton rendez-vous par notre équipe.",
     "emailAppUnavailableTitle": "Pas d'application mail",
     "emailAppUnavailableMessage": "Envoie ta demande à {{email}}.",
     "emailErrorTitle": "Erreur",

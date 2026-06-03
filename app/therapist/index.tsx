@@ -329,6 +329,9 @@ export default function AppointmentRequestScreen() {
             Un membre de l'équipe Mbipa vous recontactera par email sous 24–48h
             pour confirmer votre rendez-vous.
           </Text>
+          <Text style={[styles.confirmText, { marginTop: -spacing.sm }]}>
+            {t("therapist.priceNote")}
+          </Text>
           <Button
             mode="contained"
             onPress={() => router.back()}
@@ -527,6 +530,11 @@ export default function AppointmentRequestScreen() {
         <Surface style={styles.infoCard} elevation={0}>
           <Ionicons name="shield-checkmark" size={18} color={colors.primary} />
           <Text style={styles.infoText}>{t("therapist.confidentialInfo")}</Text>
+        </Surface>
+
+        <Surface style={styles.infoCard} elevation={0}>
+          <Ionicons name="pricetag-outline" size={18} color={colors.primary} />
+          <Text style={styles.infoText}>{t("therapist.priceNote")}</Text>
         </Surface>
 
         <Button

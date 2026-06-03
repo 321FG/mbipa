@@ -227,6 +227,7 @@
     "newRequest": "Make another request",
     "emailInfo": "The button opens your mail app to {{email}}.",
     "confidentialInfo": "Your information is confidential and used only to schedule your appointment.",
+    "priceNote": "The session fee will be shared with you when our team confirms your appointment.",
     "emailAppUnavailableTitle": "No email app",
     "emailAppUnavailableMessage": "Send your request to {{email}}.",
     "emailErrorTitle": "Error",
