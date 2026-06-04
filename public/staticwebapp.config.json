@@ -1,0 +1,18 @@
+{
+  "routes": [
+    {
+      "route": "/privacy",
+      "serve": "/privacy.html",
+      "statusCode": 200
+    },
+    {
+      "route": "/*",
+      "serve": "/privacy.html",
+      "statusCode": 200
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/privacy.html",
+    "exclude": ["*.{css,scss,js,png,gif,ico,jpg,jpeg,svg,webp}"]
+  }
+}
