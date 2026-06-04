@@ -2,17 +2,15 @@
   "routes": [
     {
       "route": "/privacy",
-      "serve": "/privacy.html",
-      "statusCode": 200
+      "rewrite": "/privacy.html"
     },
     {
-      "route": "/*",
-      "serve": "/privacy.html",
-      "statusCode": 200
+      "route": "/privacy.html",
+      "serve": "/privacy.html"
     }
   ],
-  "navigationFallback": {
-    "rewrite": "/privacy.html",
-    "exclude": ["*.{css,scss,js,png,gif,ico,jpg,jpeg,svg,webp}"]
+  "mimeTypes": {
+    ".json": "application/json",
+    ".weba": "audio/webp"
   }
 }
