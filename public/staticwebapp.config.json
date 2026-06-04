@@ -5,12 +5,11 @@
       "rewrite": "/privacy.html"
     },
     {
-      "route": "/privacy.html",
-      "serve": "/privacy.html"
+      "route": "/",
+      "rewrite": "/privacy.html"
     }
   ],
   "mimeTypes": {
-    ".json": "application/json",
-    ".weba": "audio/webp"
+    ".json": "application/json"
   }
 }
