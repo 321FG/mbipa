@@ -178,11 +178,11 @@ export default function ChatScreen() {
       (i18n.language?.slice(0, 2) as "fr" | "en" | "sg") ||
       "fr";
     speak(speakable, lang, voiceGender, character).catch((e) => {
-      console.warn("[chat] auto-speak failed:", e);
+      console.warn("[chat] auto-speak failed:", e?.message || e);
       setVoiceAutoplay(false);
       Alert.alert(
         t("chat.voiceUnavailable"),
-        e?.message || t("chat.voiceUnavailableMsg"),
+        t("chat.voiceUnavailableMsg"),
       );
     });
   }, [messages, voiceAutoplay, voiceGender, character]);
@@ -266,7 +266,8 @@ export default function ChatScreen() {
       }
     } catch (e: any) {
       setIsRecording(false);
-      Alert.alert(t("common.error"), e?.message || t("chat.voiceError"));
+      console.warn("[chat] voice error:", e?.message || e);
+      Alert.alert(t("common.error"), t("chat.voiceError"));
     }
   }, [isRecording, handleSend]);
 
@@ -319,10 +320,10 @@ export default function ChatScreen() {
       };
       dispatch(addMessage(reply));
     } catch (e: any) {
-      console.warn("[vision] error:", e);
+      console.warn("[vision] error:", e?.message || e);
       Alert.alert(
         t("chat.vision.unavailable"),
-        e?.message || t("chat.vision.unavailableMsg"),
+        t("chat.vision.unavailableMsg"),
       );
     } finally {
       dispatch(setTyping(false));
@@ -385,9 +386,10 @@ export default function ChatScreen() {
       await stopSpeaking();
       const lang = (message.lang as "fr" | "en" | "sg") || fallbackLang;
       speak(cleanedContent, lang, voiceGender, character).catch((e) => {
+        console.warn("[chat] manual speak failed:", e?.message || e);
         Alert.alert(
           t("chat.voiceUnavailable"),
-          e?.message || t("chat.voiceUnavailableMsg"),
+          t("chat.voiceUnavailableMsg"),
         );
       });
     };

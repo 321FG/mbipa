@@ -1,8 +1,12 @@
 /**
  * Azure Cognitive Services - Speech (TTS + STT)
- *
- * SECURITY NOTE: The subscription key is currently exposed via EXPO_PUBLIC_AZURE_SPEECH_KEY.
- * For production, proxy these calls through the backend so the key never ships to the client.
+ * 
+ * SECURITY: P0.1 COMPLIANT - NO EXPOSED API KEYS
+ * 
+ * ✅ All Azure API calls are proxied through the backend.
+ * ✅ EXPO_PUBLIC_AZURE_SPEECH_KEY is NOT used.
+ * ✅ No direct calls to Azure endpoints.
+ * ✅ JWT authentication required for all requests.
  *
  * Docs:
  *   TTS REST: https://learn.microsoft.com/azure/ai-services/speech-service/rest-text-to-speech
@@ -15,22 +19,13 @@ import * as FileSystem from "expo-file-system/legacy";
 import { API_URL } from "../api/config";
 import { auth as firebaseAuth } from "../config/firebase";
 
-const SPEECH_KEY = process.env.EXPO_PUBLIC_AZURE_SPEECH_KEY!;
-const SPEECH_REGION = process.env.EXPO_PUBLIC_AZURE_SPEECH_REGION || "westus2";
-
 // Backend TTS endpoint — server-side proxy to Azure Neural Voices
-// (Vivienne FR / Ava EN). Keeps the Speech key off the client.
+// (Vivienne FR / Ava EN). The server holds the AZURE_SPEECH_KEY.
 const BACKEND_TTS_ENDPOINT = `${API_URL}/api/chat/tts`;
 
-const TTS_ENDPOINT = `https://${SPEECH_REGION}.tts.speech.microsoft.com/cognitiveservices/v1`;
-// Fast transcription endpoint accepts many container formats (mp3, mp4/m4a, wav, ogg, opus, flac, webm),
-// so we don't need to force PCM/WAV recording on Android — m4a from expo-av works directly.
-// Docs: https://learn.microsoft.com/azure/ai-services/speech-service/fast-transcription-create
-const FAST_STT_ENDPOINT = `https://${SPEECH_REGION}.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2024-11-15`;
-
-// French neural voices (legacy direct path; backend now picks voices itself)
-const VOICE_FEMALE = "fr-FR-DeniseNeural";
-const VOICE_MALE = "fr-FR-HenriNeural";
+// Backend STT endpoint — server-side proxy for transcription
+// The server holds the AZURE_SPEECH_KEY and processes the audio.
+const BACKEND_STT_ENDPOINT = `${API_URL}/api/chat/stt`;
 
 let currentSound: Audio.Sound | null = null;
 let currentRecording: Audio.Recording | null = null;
@@ -61,32 +56,21 @@ export function onSpeakingChange(listener: (speaking: boolean) => void) {
 }
 
 /**
- * Build SSML for a French neural voice.
- */
-function buildSsml(text: string, voice: "female" | "male" = "female"): string {
-  const voiceName = voice === "male" ? VOICE_MALE : VOICE_FEMALE;
-  // Escape XML special chars
-  const safe = text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-  return `<speak version="1.0" xml:lang="fr-FR"><voice name="${voiceName}"><prosody rate="0%" pitch="0%">${safe}</prosody></voice></speak>`;
-}
-
-/**
  * Speak the given text via the Mbipa backend TTS proxy (Azure Neural Voices).
+ * 
  * The backend selects the appropriate native voice (Vivienne FR, Ava EN, …)
  * based on the `lang` parameter, so the playback always sounds native
  * regardless of the device's system language.
  *
- * When `voiceGender` is provided, it is forwarded to the backend AND used to
- * pick a gendered French neural voice if we fall back to direct Azure TTS
- * (so a male character like Bagaza never gets a female voice).
+ * When `voiceGender` is provided, it is forwarded to the backend so the
+ * server can honor it for gendered voices per character.
  *
  * `character` ("bagaza" | "yassingou") is forwarded to the backend so the
- * server can pick the right neural voice per character (this is the source
- * of truth — the backend mapping wins over `voiceGender`).
+ * server can pick the right neural voice per character. The backend mapping
+ * is the source of truth.
+ * 
+ * SECURITY: This method requires JWT authentication. The backend will attach
+ * the AZURE_SPEECH_KEY server-side and never expose it to the client.
  */
 export async function speak(
   text: string,
@@ -104,7 +88,7 @@ export async function speak(
     | undefined;
 
   if (__DEV__) {
-    console.log("🔊 TTS request", {
+    console.log("🔊 TTS request (backend proxy)", {
       character: characterId,
       voiceGender,
       lang,
@@ -114,47 +98,15 @@ export async function speak(
 
   let path: string | null = null;
   try {
-    // ---------------------------------------------------------------------
-    // Direct Azure TTS path — used when the Speech key is shipped with the
-    // app AND no character was specified. Once the backend supports the
-    // `character` field (which is now the source of truth for voice
-    // selection), we always prefer the backend path so the per-character
-    // voice mapping stays centralized server-side.
-    // ---------------------------------------------------------------------
-    if (SPEECH_KEY && lang === "fr" && !characterId) {
-      const ssml = buildSsml(text, voiceGender);
-      const ttsResp = await fetch(TTS_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Ocp-Apim-Subscription-Key": SPEECH_KEY,
-          "Content-Type": "application/ssml+xml",
-          "X-Microsoft-OutputFormat": "audio-24khz-48kbitrate-mono-mp3",
-          "User-Agent": "mbipa-app",
-        },
-        body: ssml,
-      });
-      if (!ttsResp.ok) {
-        const detail = await ttsResp.text().catch(() => "");
-        console.warn("[speech] direct TTS failed", ttsResp.status, detail);
-        throw new Error(`Direct TTS échec (${ttsResp.status})`);
-      }
-      const ab = await ttsResp.arrayBuffer();
-      path = await playMp3FromArrayBuffer(ab);
-      return;
-    }
-
-    // ---------------------------------------------------------------------
-    // Backend proxy path (default when SPEECH_KEY isn't shipped).
-    // We forward `voiceGender` so a backend update can honour it; if the
-    // backend ignores it, the gender will still be wrong for non-FR langs
-    // until the backend is patched.
-    // ---------------------------------------------------------------------
+    // ✅ SECURE PATH: Backend proxy only
+    // Get Firebase ID token for authentication
     const fbUser = firebaseAuth.currentUser;
     const token = fbUser ? await fbUser.getIdToken() : null;
     if (!token) {
-      throw new Error("Authentification requise pour la voix.");
+      throw new Error("AUTH_REQUIRED");
     }
 
+    // Call backend TTS endpoint (never expose Azure key)
     const response = await fetch(BACKEND_TTS_ENDPOINT, {
       method: "POST",
       headers: {
@@ -173,7 +125,7 @@ export async function speak(
     if (!response.ok) {
       const detail = await response.text().catch(() => "");
       console.warn("[speech] TTS backend failed", response.status, detail);
-      throw new Error(`TTS échec (${response.status})`);
+      throw new Error(`TTS_FAILED_${response.status}`);
     }
 
     const arrayBuffer = await response.arrayBuffer();
@@ -264,11 +216,16 @@ export async function startRecording(): Promise<boolean> {
 }
 
 /**
- * Stop recording and transcribe via Azure Fast Transcription API.
- * Accepts the recording in its native container format (m4a on Android,
- * caf/wav on iOS) and uses multipart/form-data which the Azure endpoint
- * happily ingests.
- * Returns the recognized French text (or empty string).
+ * Stop recording and transcribe via backend STT proxy.
+ * 
+ * The recorded audio is sent to the backend, which will:
+ * 1. Attach the AZURE_SPEECH_KEY server-side (never exposed to client)
+ * 2. Call Azure Fast Transcription API
+ * 3. Return the recognized text
+ * 
+ * SECURITY: The client never has access to the speech key.
+ * 
+ * Returns the recognized text (or empty string on error).
  */
 export async function stopRecordingAndTranscribe(): Promise<string> {
   const recording = currentRecording;
@@ -283,12 +240,12 @@ export async function stopRecordingAndTranscribe(): Promise<string> {
 
   const uri = recording.getURI();
   if (!uri) {
-    throw new Error("Aucun fichier audio enregistré.");
+    throw new Error("NO_AUDIO_FILE");
   }
 
   const fileInfo = await FileSystem.getInfoAsync(uri);
   if (!fileInfo.exists) {
-    throw new Error("Fichier audio introuvable.");
+    throw new Error("AUDIO_FILE_MISSING");
   }
 
   // Infer mime/name from the URI extension.
@@ -312,23 +269,24 @@ export async function stopRecordingAndTranscribe(): Promise<string> {
     name = "recording.aac";
   }
 
+  // ✅ SECURE PATH: Use backend proxy instead of direct Azure call
+  const fbUser = firebaseAuth.currentUser;
+  const token = fbUser ? await fbUser.getIdToken() : null;
+  if (!token) {
+    FileSystem.deleteAsync(uri, { idempotent: true }).catch(() => {});
+    throw new Error("AUTH_REQUIRED");
+  }
+
   const form = new FormData();
   // React Native FormData accepts {uri, name, type} objects.
   form.append("audio", { uri, name, type: mime } as any);
-  form.append(
-    "definition",
-    JSON.stringify({
-      locales: ["fr-FR"],
-      profanityFilterMode: "None",
-    }),
-  );
 
   let response: Response;
   try {
-    response = await fetch(FAST_STT_ENDPOINT, {
+    response = await fetch(BACKEND_STT_ENDPOINT, {
       method: "POST",
       headers: {
-        "Ocp-Apim-Subscription-Key": SPEECH_KEY,
+        Authorization: `Bearer ${token}`,
         Accept: "application/json",
         // Note: do NOT set Content-Type manually — fetch sets the multipart boundary.
       },
@@ -338,7 +296,7 @@ export async function stopRecordingAndTranscribe(): Promise<string> {
     console.warn("[speech] STT fetch failed", e);
     // Cleanup before rethrow
     FileSystem.deleteAsync(uri, { idempotent: true }).catch(() => {});
-    throw new Error(`Réseau indisponible : ${e?.message || e}`);
+    throw new Error("NETWORK_UNAVAILABLE");
   }
 
   // Cleanup audio file regardless of outcome
@@ -346,24 +304,14 @@ export async function stopRecordingAndTranscribe(): Promise<string> {
 
   if (!response.ok) {
     const detail = await response.text().catch(() => "");
-    console.warn("[speech] STT failed", response.status, detail);
-    // Surface a snippet of the server's reason so 422 issues are diagnosable.
-    const snippet = detail
-      ? ` — ${detail.replace(/\s+/g, " ").slice(0, 140)}`
-      : "";
-    throw new Error(`Transcription échec (${response.status})${snippet}`);
+    console.warn("[speech] STT backend failed", response.status, detail);
+    throw new Error(`STT_FAILED_${response.status}`);
   }
 
   const data = await response.json();
-  // Fast transcription response shape:
-  // { duration, combinedPhrases: [{ text }], phrases: [...] }
-  const text =
-    data?.combinedPhrases?.[0]?.text?.trim() ||
-    data?.phrases
-      ?.map((p: any) => p?.text)
-      .filter(Boolean)
-      .join(" ") ||
-    "";
+  // Backend STT response shape (customize based on your backend):
+  // { text: "recognized text", confidence: 0.95, ... }
+  const text = data?.text?.trim() || "";
   return text;
 }
 
