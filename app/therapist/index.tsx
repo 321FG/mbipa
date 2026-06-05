@@ -324,10 +324,9 @@ export default function AppointmentRequestScreen() {
           <View style={styles.confirmIcon}>
             <Ionicons name="checkmark" size={40} color="#fff" />
           </View>
-          <Text style={styles.confirmTitle}>Demande envoyée</Text>
+          <Text style={styles.confirmTitle}>{t("therapist.requestSentTitle")}</Text>
           <Text style={styles.confirmText}>
-            Un membre de l'équipe Mbipa vous recontactera par email sous 24–48h
-            pour confirmer votre rendez-vous.
+            {t("therapist.requestSentText")}
           </Text>
           <Text style={[styles.confirmText, { marginTop: -spacing.sm }]}>
             {t("therapist.priceNote")}
@@ -337,7 +336,7 @@ export default function AppointmentRequestScreen() {
             onPress={() => router.back()}
             style={styles.confirmBtn}
           >
-            Retour
+            {t("therapist.back")}
           </Button>
           <Button
             mode="text"
@@ -345,7 +344,7 @@ export default function AppointmentRequestScreen() {
               setSubmitted(false);
             }}
           >
-            Faire une nouvelle demande
+            {t("therapist.newRequest")}
           </Button>
         </View>
       </SafeAreaView>
