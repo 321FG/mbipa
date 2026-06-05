@@ -91,18 +91,6 @@ export const SIGNALR_HUBS = {
   NOTIFICATION: "/hubs/notification",
 };
 
-// Azure Speech Configuration
-export const AZURE_SPEECH = {
-  KEY: process.env.EXPO_PUBLIC_AZURE_SPEECH_KEY || "",
-  REGION: process.env.EXPO_PUBLIC_AZURE_SPEECH_REGION || "westus2",
-  AVATAR: {
-    CHARACTER: "lisa",
-    STYLE: "graceful",
-    VOICE_FR: "fr-FR-DeniseNeural",
-    VOICE_EN: "en-US-JennyNeural",
-  },
-};
-
 // Stripe Configuration
 export const STRIPE = {
   PUBLISHABLE_KEY: process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY || "",
