@@ -252,24 +252,24 @@ export default function RegisterScreen() {
 
                   <Animated.View
                     entering={FadeInDown.duration(500).delay(280)}
-                    style={styles.row}
                   >
-                    <View style={styles.half}>
-                      <FloatingField
-                        label={t("auth.firstName")}
-                        icon="person-outline"
-                        value={prenom}
-                        onChangeText={setPrenom}
-                      />
-                    </View>
-                    <View style={styles.half}>
-                      <FloatingField
-                        label={t("auth.lastName")}
-                        icon="person-outline"
-                        value={nom}
-                        onChangeText={setNom}
-                      />
-                    </View>
+                    <FloatingField
+                      label={t("auth.firstName")}
+                      icon="person-outline"
+                      value={prenom}
+                      onChangeText={setPrenom}
+                    />
+                  </Animated.View>
+
+                  <Animated.View
+                    entering={FadeInDown.duration(500).delay(310)}
+                  >
+                    <FloatingField
+                      label={t("auth.lastName")}
+                      icon="person-outline"
+                      value={nom}
+                      onChangeText={setNom}
+                    />
                   </Animated.View>
 
                   <Animated.View entering={FadeInDown.duration(500).delay(340)}>
@@ -553,8 +553,6 @@ const styles = StyleSheet.create({
     fontSize: fontSizes.sm,
     textAlign: "center",
   },
-  row: { flexDirection: "row", gap: spacing.sm },
-  half: { flex: 1 },
   genderTitle: {
     fontSize: fontSizes.sm,
     fontWeight: "600",
