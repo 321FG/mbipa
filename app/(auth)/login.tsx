@@ -32,7 +32,12 @@ import { MeshBackground } from "@/src/components/Auth/MeshBackground";
 import { PrimaryButton } from "@/src/components/Auth/PrimaryButton";
 import { auth as firebaseAuth } from "@/src/config/firebase";
 import { useAppDispatch, useAppSelector } from "@/src/hooks";
-import { clearError, login } from "@/src/store/slices/authSlice";
+import {
+  clearError,
+  login,
+  refreshEmailVerificationStatus,
+  setEmailVerified,
+} from "@/src/store/slices/authSlice";
 import { borderRadius, colors, fontSizes, spacing } from "@/src/theme";
 
 export default function LoginScreen() {
@@ -89,10 +94,15 @@ export default function LoginScreen() {
       } catch {
         /* non-fatal */
       }
-      if (firebaseAuth.currentUser && !firebaseAuth.currentUser.emailVerified) {
+      const verified = !!firebaseAuth.currentUser?.emailVerified;
+      dispatch(setEmailVerified(verified));
+      if (!verified) {
         router.replace("/(auth)/verify-email");
         return;
       }
+      // Best-effort server/Firebase re-sync (also mirrors Firestore emailVerified=true).
+      dispatch(refreshEmailVerificationStatus());
+      router.replace("/(tabs)");
     }
   };
 

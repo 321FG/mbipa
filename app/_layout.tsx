@@ -24,7 +24,9 @@ import { loadAssessmentHistory } from "@/src/store/slices/assessmentSlice";
 import {
     fetchProfile,
     migrateLegacyUserCache,
+  refreshEmailVerificationStatus,
     restoreSession,
+  setEmailVerified,
 } from "@/src/store/slices/authSlice";
 import { persistor, store, type RootState } from "@/src/store/store";
 import { loadStoredThemeMode, paperTheme } from "@/src/theme";
@@ -99,6 +101,9 @@ function AppContent() {
     const unsub = onAuthStateChanged(firebaseAuth, (fbUser) => {
       if (fbUser) {
         store.dispatch(fetchProfile());
+        store.dispatch(refreshEmailVerificationStatus());
+      } else {
+        store.dispatch(setEmailVerified(false));
       }
     });
     return () => unsub();
@@ -135,19 +140,13 @@ function AppContent() {
       // Legal pages (terms, privacy, etc.) are public — viewable without
       // being signed in (e.g. from the register screen before accepting).
       const inPublicGroup = segments[0] === "legal";
-      if (isAuthenticated && isEmailVerified && inAuthGroup) {
-        // Authenticated & verified user is sitting on an auth screen — push to tabs.
-        router.replace("/(tabs)");
-      } else if (isAuthenticated && !isEmailVerified && inAuthGroup && authScreen !== "verify-email") {
-        // Authenticated but unverified user needs to verify email first
-        router.replace("/(auth)/verify-email");
-      } else if (isAuthenticated && inAuthGroup && authScreen !== "verify-email") {
-        // Authenticated user (but we're not sure about verification yet) on auth screen
-        // Let verify-email handle the check, unless we know they're not verified
-        if (!isEmailVerified) {
-          router.replace("/(auth)/verify-email");
-        } else {
+      if (isAuthenticated && inAuthGroup) {
+        if (isEmailVerified) {
+          // Verified users should never be stuck on auth screens.
           router.replace("/(tabs)");
+        } else if (authScreen !== "verify-email") {
+          // Unverified users must complete email verification first.
+          router.replace("/(auth)/verify-email");
         }
       } else if (!isAuthenticated && !inAuthGroup && !inPublicGroup) {
         // Logged out / never logged in but on a protected screen.

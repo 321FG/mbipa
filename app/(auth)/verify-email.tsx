@@ -24,7 +24,11 @@ import {
 
 import { auth } from "@/src/config/firebase";
 import { useAppDispatch } from "@/src/hooks";
-import { logout, resendVerificationEmail, setEmailVerified } from "@/src/store/slices/authSlice";
+import {
+  logout,
+  refreshEmailVerificationStatus,
+  resendVerificationEmail,
+} from "@/src/store/slices/authSlice";
 import { borderRadius, colors, fontSizes, spacing } from "@/src/theme";
 
 const ACCENT = { flame: "#FF8A4C" };
@@ -52,12 +56,9 @@ export default function VerifyEmailScreen() {
     let cancelled = false;
     const id = setInterval(async () => {
       try {
-        const u = auth?.currentUser;
-        if (!u) return;
-        await u.reload();
-        if (!cancelled && u.emailVerified) {
+        const verified = await dispatch(refreshEmailVerificationStatus()).unwrap();
+        if (!cancelled && verified) {
           clearInterval(id);
-          dispatch(setEmailVerified(true));
           router.replace("/(tabs)");
         }
       } catch {
@@ -79,9 +80,8 @@ export default function VerifyEmailScreen() {
         router.replace("/(auth)/login");
         return;
       }
-      await u.reload();
-      if (u.emailVerified) {
-        dispatch(setEmailVerified(true));
+      const verified = await dispatch(refreshEmailVerificationStatus()).unwrap();
+      if (verified) {
         router.replace("/(tabs)");
       } else {
         Alert.alert(

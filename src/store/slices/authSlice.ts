@@ -9,8 +9,9 @@ import {
     signInWithEmailAndPassword,
     signOut,
 } from "firebase/auth";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { API_URL, ENDPOINTS } from "../../api/config";
-import { auth as firebaseAuth } from "../../config/firebase";
+import { app as firebaseApp, auth as firebaseAuth } from "../../config/firebase";
 import { apiFetch } from "../../services/api";
 import type {
     AuthResponse,
@@ -361,6 +362,51 @@ export const resendVerificationEmail = createAsyncThunk<void>(
   },
 );
 
+/**
+ * Best-effort Firestore mirror for email verification status.
+ * Safe no-op when Firestore is unused/unconfigured.
+ */
+async function syncFirestoreEmailVerified(uid: string): Promise<void> {
+  try {
+    const db = getFirestore(firebaseApp);
+    await setDoc(
+      doc(db, "users", uid),
+      {
+        emailVerified: true,
+        emailVerifiedAt: new Date().toISOString(),
+      },
+      { merge: true },
+    );
+  } catch (e) {
+    if (__DEV__) {
+      // eslint-disable-next-line no-console
+      console.warn("[auth] Firestore emailVerified sync skipped:", e);
+    }
+  }
+}
+
+/**
+ * Force-refresh Firebase user and return latest emailVerified status.
+ * Also mirrors `emailVerified=true` into Firestore when available.
+ */
+export const refreshEmailVerificationStatus = createAsyncThunk<boolean>(
+  "auth/refreshEmailVerificationStatus",
+  async (_, { rejectWithValue }) => {
+    try {
+      const fbUser = firebaseAuth.currentUser;
+      if (!fbUser) return false;
+      await fbUser.reload();
+      const verified = !!fbUser.emailVerified;
+      if (verified) {
+        await syncFirestoreEmailVerified(fbUser.uid);
+      }
+      return verified;
+    } catch (e: any) {
+      return rejectWithValue(e?.message || "Failed to refresh email status") as any;
+    }
+  },
+);
+
 export const logout = createAsyncThunk("auth/logout", async () => {
   // 1. Sign out of Firebase first.
   try {
@@ -682,6 +728,11 @@ const authSlice = createSlice({
     builder.addCase(fetchProfile.fulfilled, (state, action) => {
       state.user = action.payload;
       state.isAuthenticated = true;
+    });
+
+    // Email verification refresh
+    builder.addCase(refreshEmailVerificationStatus.fulfilled, (state, action) => {
+      state.isEmailVerified = !!action.payload;
     });
 
     // Restore session
