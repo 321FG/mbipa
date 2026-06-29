@@ -35,6 +35,7 @@ const initialState: AuthState = {
   refreshToken: null,
   isAuthenticated: false,
   isEmailVerified: false,
+  isEmailVerificationLoaded: false,
   isLoading: false,
   error: null,
 };
@@ -702,6 +703,7 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isAuthenticated = true;
       state.isEmailVerified = false; // Newly registered users must verify email
+      state.isEmailVerificationLoaded = true; // We know for certain: new account = unverified
       state.user = action.payload.user;
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
@@ -733,6 +735,12 @@ const authSlice = createSlice({
     // Email verification refresh
     builder.addCase(refreshEmailVerificationStatus.fulfilled, (state, action) => {
       state.isEmailVerified = !!action.payload;
+      state.isEmailVerificationLoaded = true;
+    });
+    builder.addCase(refreshEmailVerificationStatus.rejected, (state) => {
+      // Even on network error we mark as loaded so routing is never blocked
+      // forever. isEmailVerified stays at its last known value.
+      state.isEmailVerificationLoaded = true;
     });
 
     // Restore session

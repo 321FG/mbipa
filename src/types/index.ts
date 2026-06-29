@@ -354,6 +354,12 @@ export interface AuthState {
   refreshToken: string | null;
   isAuthenticated: boolean;
   isEmailVerified: boolean;
+  /**
+   * True once refreshEmailVerificationStatus has resolved (fulfilled OR
+   * rejected) for this session. Guards the routing effect so we never
+   * redirect to verify-email based on stale/unloaded state.
+   */
+  isEmailVerificationLoaded: boolean;
   isLoading: boolean;
   error: string | null;
 }

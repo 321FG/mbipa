@@ -54,6 +54,7 @@ function AppContent() {
   const [hasSeenOnboarding, setHasSeenOnboarding] = useState(false);
   const isAuthenticated = useSelector((s: RootState) => s.auth.isAuthenticated);
   const isEmailVerified = useSelector((s: RootState) => s.auth.isEmailVerified);
+  const isEmailVerificationLoaded = useSelector((s: RootState) => s.auth.isEmailVerificationLoaded);
   const userId = useSelector((s: RootState) => s.auth.user?.id);
   const userEmail = useSelector((s: RootState) => s.auth.user?.email);
   const segments = useSegments();
@@ -100,6 +101,12 @@ function AppContent() {
   useEffect(() => {
     const unsub = onAuthStateChanged(firebaseAuth, (fbUser) => {
       if (fbUser) {
+        // Fast-path: immediately reflect the token's emailVerified claim so
+        // the routing effect doesn't make a wrong decision while the async
+        // reload() network call is in flight.
+        if (fbUser.emailVerified) {
+          store.dispatch(setEmailVerified(true));
+        }
         store.dispatch(fetchProfile());
         store.dispatch(refreshEmailVerificationStatus());
       } else {
@@ -144,10 +151,15 @@ function AppContent() {
         if (isEmailVerified) {
           // Verified users should never be stuck on auth screens.
           router.replace("/(tabs)");
-        } else if (authScreen !== "verify-email") {
-          // Unverified users must complete email verification first.
+        } else if (isEmailVerificationLoaded && authScreen !== "verify-email") {
+          // Only redirect to verify-email AFTER Firebase reload confirmed
+          // they are not verified. Without this guard, a race between
+          // fetchProfile (sets isAuthenticated=true) and
+          // refreshEmailVerificationStatus (sets isEmailVerified) causes
+          // verified users to briefly land on verify-email.
           router.replace("/(auth)/verify-email");
         }
+        // If !isEmailVerificationLoaded: reload() still in flight — stay put.
       } else if (!isAuthenticated && !inAuthGroup && !inPublicGroup) {
         // Logged out / never logged in but on a protected screen.
         router.replace(
@@ -176,7 +188,7 @@ function AppContent() {
       cancelled = true;
       clearTimeout(t);
     };
-  }, [isReady, isAuthenticated, isEmailVerified, hasSeenOnboarding, segments]);
+  }, [isReady, isAuthenticated, isEmailVerified, isEmailVerificationLoaded, hasSeenOnboarding, segments]);
 
   // On logout, re-read the onboarding flag so users see onboarding again
   // (the logout thunk clears the flag in AsyncStorage).
